@@ -1,0 +1,134 @@
+% geometry packages
+\usepackage{geometry}
+\geometry{left=2.0cm,textwidth=17cm,top=2.5cm,textheight=23cm}
+
+% language packages
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8x]{inputenc}
+
+% math packages
+\usepackage{amsmath,amssymb,wasysym}
+\newtheorem{definition}{Definition}
+
+% graphic packages
+\usepackage{graphicx,color}
+
+\usepackage{tikz}
+\usetikzlibrary{automata,arrows,calc,shadows.blur,shapes.symbols}
+\usepackage{circuitikz}
+\usepackage{pgf}
+\usepackage{pgfplots}
+\usepackage{subcaption}
+
+% table packages
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{booktabs}
+
+% links
+\usepackage{url}
+\usepackage{hyperref}
+
+% auxiliary packages for formatting
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xspace}
+\usepackage{csquotes}
+
+\usepackage{comment}
+
+\usepackage{listings}
+\usepackage{subcaption}
+\usepackage{float}
+\captionsetup[subfigure]{labelformat = parens, labelsep = space, font = small}
+\usepackage{enumitem}
+
+\usepackage{bytefield}
+
+\DeclareRobustCommand*{\IgnoreToc}[1]{#1}
+
+
+\pdfmapfile{+zi4.map}
+\usepackage{zi4}
+
+% acronym packages
+\usepackage[nolist]{acronym}
+\input{acronyms.tex}
+
+% algorithm packages and defintions
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\algrenewcommand\algorithmicrequire{\textbf{\ \ Input:}}
+\algrenewcommand\algorithmicensure{\textbf{Output:}}
+
+\makeatletter
+\AtBeginDocument{
+	\hypersetup{
+		pdftitle = {\@title},
+		pdfauthor = {\@author},
+		pdfsubject={\@title},
+		pdfkeywords={}
+	}
+}
+
+\makeatother
+
+\newcommand{\CC}[1][]{$\text{C\hspace{-.25ex}}^{_{_{_{++}}}}\ifthenelse{\equal{#1}{}}{}{\text{\hspace{-.625ex}#1}}$}
+
+\newcommand{\circled}[2][]{
+  \tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=1pt,fill=black]
+    (char) {\phantom{\ifblank{#1}{#2}{#1}}};
+    \node[text=white] at (char.center) {\makebox[0pt][c]{\bf #2}};}}
+\robustify{\circled}
+
+\newcommand{\etal}[0]{\textit{et~al.}\xspace}
+\newcommand{\fixme}[1]{\textcolor{magenta}{#1}\xspace}
+\newcommand{\HAL}[0]{\textnormal{\texttt{HAL}}\xspace}
+\newcommand{\romannumber}[1]{\uppercase\expandafter{\romannumeral#1}}
+\newcommand{\todo}[1]{\textcolor{red}{todo: #1}\xspace}
+
+
+\newcommand{\Algorithm}[1]{\textcolor{blue}{Algorithm~\ref{#1}}}
+\newcommand{\Appendix}[1]{\textcolor{blue}{Appendix~\ref{#1}}}
+\newcommand{\Chapter}[1]{\textcolor{blue}{Chapter~\ref{#1}}}
+\newcommand{\Definition}[1]{\textcolor{blue}{Definition~\ref{#1}}}
+\newcommand{\Equation}[1]{\textcolor{blue}{Equation~\ref{#1}}}
+\newcommand{\Figure}[1]{\textcolor{blue}{Figure~\ref{#1}}}
+\newcommand{\Listing}[1]{\textcolor{blue}{Listing~\ref{#1}}}
+\newcommand{\Section}[1]{\textcolor{blue}{Section~\ref{#1}}}
+\newcommand{\Table}[1]{\textcolor{blue}{Table\ref{#1}}}
+
+% prevent clubs and widows
+\clubpenalty10000
+\widowpenalty10000
+\displaywidowpenalty=10000
+
+
+\lstdefinestyle{vhdl_style}
+{
+	language=VHDL,
+	%float=!htb,
+	basicstyle=\ttfamily\footnotesize,
+	identifierstyle=\bfseries\color{black},
+	keywordstyle=\bfseries\color{blue!80},
+	stringstyle=\bfseries\color{black!50},
+	commentstyle=\bfseries\color{green!80},
+	columns=flexible,
+	frame=single,
+	frameround=tttt,
+	showspaces=false,
+	showstringspaces=false,
+	numberstyle=\tiny,
+	numbers=left,
+	tabsize=4,
+	stepnumber=1,
+	breaklines=true,
+	xrightmargin=-\fboxsep,
+	backgroundcolor=\color{white},
+	captionpos=t,
+	mathescape
+}

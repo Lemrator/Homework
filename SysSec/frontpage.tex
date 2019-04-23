@@ -1,0 +1,29 @@
+%!TEX root = ../main.tex
+
+\begin{titlepage}
+\makeatletter
+
+\enlargethispage{3cm}
+
+\begin{tikzpicture}[remember picture,overlay]
+%\node[shift={(13.5cm,-23cm)},opacity=1] {\includegraphics[scale=0.5]{logos/EMSEC_Logo_bw}};
+\node[shift={(14cm,1.22cm)},opacity=1] {\includegraphics[scale=1]{logos/rub_logo}};
+\end{tikzpicture}
+
+ \vspace*{12cm}
+\begin{minipage}[b]{1\linewidth}
+	\sffamily
+  	\hspace{-2mm}\includegraphics[scale=1]{logos/rub_slogan}\\
+
+   	\textbf{\LARGE {\@title}}\\
+
+  	\Large{\@author}\\
+
+	\vspace*{35mm}
+  	\normalsize{
+	Deadline: \@date\@.\\
+	\thadv\/}
+ \end{minipage}
+
+\makeatother
+\end{titlepage}
