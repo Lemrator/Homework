@@ -1,0 +1,36 @@
+\documentclass[]{article}
+
+%opening
+\title{Systemsicherheit - 2. Übung}
+\author{Dennis Rotärmel, Niklas Entschladen, Tobias Ratajczyk, Gruppe Q}
+
+\begin{document}
+
+\maketitle
+\section{Aufgabe 3}
+\subsection*{a)}
+\begin{itemize}
+	\item \textbf{Data Movement}:
+	
+	\item  \textbf{Arithmetic and Logic}:
+	\begin{itemize}
+		\item \texttt{xor eax, eax} $\hat{=}$ eax $\oplus$ eax = 0
+		\item \texttt{add eax, 1234h} $\hat{=}$ eax + 4660 = 0 + 4660 = 4660
+		\item \texttt{ror eax, 16} $\hat{=}$ {0001001000110100}\textsubscript{2} $\rightarrow$ {0011010000010010}\textsubscript{2} $\hat{=}$  {13330}\textsubscript{10}
+		\item \texttt{or eax, 55h} $\hat{=}$ {0011010000010010}\textsubscript{2} $\vee$ {0000000001010101}\textsubscript{2} = {0011010001010111}\textsubscript{2} $\hat{=}$ {13399}\textsubscript{10}
+		\item \texttt{inc eax} $\hat{=}$ = eax + 1 = 13400
+		\item \texttt{shl ax, 8} $\hat{=}$ 0011010001011000\textsubscript{2} $\rightarrow$ 0011010001011000\textsubscript{2} (ax = 0, somit keine Änderung)
+		\item  \texttt{mov al, 78h} $\hat{=}$ 0011010001011000\textsubscript{2} $\rightarrow$ 0011010001110100\textsubscript{2} $\hat{=}$ 13428\textsubscript{10}
+		\item Damit ist am Ende der Wert 13428 im \texttt{eax} Register
+	\end{itemize}
+	
+	\item \textbf{Control Flow}:
+	\begin{itemize}
+		\item \texttt{mov eax, 1h} $\hat{=}$ eax = 00\dots0001
+		\item \texttt{neg eax} $\hat{=}$ eax = 11\dots1111
+		\item \texttt{mov ebx, FFFFFFF8h}
+		\item \texttt{cmp eax, ebx} 
+	\end{itemize}
+\end{itemize}
+
+\end{document}
