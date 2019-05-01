@@ -1,0 +1,39 @@
+Aufgabe 2:
+a)
+Bei der Ausführung des Programmes wird der jeweils i-te Buchstabe um den Wert i-1 erhöht (siehe ASCII-Tabelle).
+Danach wird der daraus entstehende String mit folgendem String vergleichen: "HPFRV"
+Daraus lässt sich schlussfolgern, dass das Schlüsselwort "HODOR" lautet. Die Eingabe des Wortes bestätigt dies.
+
+Bis auf den Befehl "break verify_key" und die dazugehörigen step- und continue-Anweisungen wurden keine weiteren Befehle benötigt.
+
+b)
+Quellcode:
+
+#include <stdio.h>
+
+int verify_key(char *str){
+	char key[5] = "HODOR";
+	
+	for(int i=0; i<5; i++){
+		if (str[i]!=key[i]){
+			printf("Key is not valid :(\n");
+			return 0;
+		}
+	}
+	printf("Key is valid! Whoop whoop :)\n");
+	return 0;
+}
+
+int main(){
+	char str[5];
+	
+	printf("Enter serial (5 capital letters): ");
+	scanf("%s", str);
+	
+	for(int i=0; i<5; i++){
+		str[i]=str[i]+i;
+	}
+	
+	return verify_key(str);
+}
+
