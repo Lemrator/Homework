@@ -1,5 +1,6 @@
 \documentclass[]{article}
-
+\usepackage{listings}
+\lstset{numbers=left}
 %opening
 \title{Systemsicherheit - 2. Übung}
 \author{Dennis Rotärmel, Niklas Entschladen, Tobias Ratajczyk, Gruppe Q}
@@ -7,6 +8,41 @@
 \begin{document}
 
 \maketitle
+\section{Aufgabe 2}
+\subsection*{a)}
+Bei der Ausführung des Programmes wird der jeweils i-te Buchstabe um den Wert i-1 erhöht (siehe ASCII-Tabelle).
+Danach wird der daraus entstehende String mit folgendem String vergleichen: "HPFRV".
+Daraus lässt sich schlussfolgern, dass das Schlüsselwort "HODOR" lautet. Die Eingabe des Wortes bestätigt dies.
+Bis auf den Befehl "break verif\_key" und die dazugehörigen step- und continue-Anweisungen wurden keine weiteren Befehle benötigt.
+\subsection*{b)}
+\begin{lstlisting}
+#include <stdio.h>
+
+int verify_key(char *str){
+	char key[5] = "HPFRV";
+
+	for(int i=0; i<5; i++){
+		if (str[i]!=key[i]){
+			printf("Key is not valid :(\n");
+			return 0;
+		}
+	}
+	printf("Key is valid! Whoop whoop :)\n");
+	return 0;
+}
+	
+int main(){
+	char str[5];
+	printf("Enter serial (5 capital letters): ");
+	scanf("%s", str);
+	
+	for(int i=0; i<5; i++){
+		str[i]=str[i]+i;
+	}
+
+	return verify_key(str);
+}
+\end{lstlisting}
 \section{Aufgabe 3}
 \subsection*{a)}
 \begin{itemize}
