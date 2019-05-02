@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int verify_key(char *str){
-	char key[5] = "HODOR";
+	char key[5] = "HPFRV";
 	
 	for(int i=0; i<5; i++){
 		if (str[i]!=key[i]){
