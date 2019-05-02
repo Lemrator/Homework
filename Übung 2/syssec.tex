@@ -8,6 +8,18 @@
 \begin{document}
 
 \maketitle
+\chapter{Aufgabe 1}
+\subsection*{a)}
+Folgender Assembly-code führt die Berechnung aus:
+\begin{lstlisting}
+	imul ecx, ecx ;ecx*ecx
+	sub ecx, ebx ;ecx*ecx-ebx
+	shl eax, 1 ;eax*2
+	add eax, ecx ;ecx*ecx-ebx+eax*2
+	add ebx, 0xaaaa ;ebx+0xaaaa
+	xor eax, ebx ;(ecx*ecx-ebx+eax*2)^(ebx+0xaaaa)
+\end{lstlisting}
+Die Ausgabe des Programms lautet: \texttt{12345}.
 \chapter{Aufgabe 2}
 \subsection*{a)}
 Bei der Ausführung des Programmes wird der jeweils i-te Buchstabe um den Wert i-1 erhöht (siehe ASCII-Tabelle).
@@ -66,7 +78,11 @@ int main(){
 		\item \texttt{neg eax} $\hat{=}$ eax = 11\dots1111
 		\item \texttt{mov ebx, FFFFFFF8h}
 		\item \texttt{cmp eax, ebx} 
+		\item \texttt{jg true} $\rightarrow$ ebx ist größer als eax (da Vorzeichen beachtet)
+		\item \texttt{mov eax, 0} wird ausgeführt
+		\item damit ist im eax der Wert 0 am Ende.
 	\end{itemize}
 \end{itemize}
-
+\subsection*{b)}
+\texttt{ja} ist ein unsigned-Vergleich, damit wird beim vergleichen das Vorzeichen nicht beachtet. In diesem Fall ist der Wert im \texttt{eax} größer und es wird \texttt{mov eax, 1} ausgeführt.
 \end{document}
