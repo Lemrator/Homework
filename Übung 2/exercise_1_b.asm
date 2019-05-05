@@ -47,7 +47,7 @@ main:
 	jb error
 	cmp eax, 1000		; Fehlermeldung, falls choise>1000
 	ja error
-
+	mov esi, [choice]
     ;-------------------------------
     
     ;-------------------------------
@@ -93,16 +93,93 @@ error:
 ; The function is_prime should contain your primality test.
 ; Return 1 if the argument (passed via the stack) is prime, else 0.
 ; Mark instructions belonging to the prologue and epilogue.
+set_eax_true:
+	mov eax, 1
+	leave
+	retn
+set_eax_false:
+	mov eax, 0
+	leave
+	retn
 is_prime:
     ; prologue
-    pop eax
+    push ebp
+    mov ebp, esp
+    sub esp, 4h
     ; end of prologue
     
     ; function body
-
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 2
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 3
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 5
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 7
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 11
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 13
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 17
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 19
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 23
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 29
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 31
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	call set_eax_true
     ; end of function body
     
     ; epilogue
-    ret
+    leave
+    retn
     ; end of epilogue / end of function
 ;-------------------------------
