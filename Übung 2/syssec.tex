@@ -10,7 +10,7 @@
 \maketitle
 \chapter{Aufgabe 1}
 \subsection*{a)}
-Folgender Assembly-code führt die Berechnung aus:
+Folgender Assembly-Code führt die Berechnung aus:
 \begin{lstlisting}
 	imul ecx, ecx ;ecx*ecx
 	sub ecx, ebx ;ecx*ecx-ebx
@@ -20,6 +20,194 @@ Folgender Assembly-code führt die Berechnung aus:
 	xor eax, ebx ;(ecx*ecx-ebx+eax*2)^(ebx+0xaaaa)
 \end{lstlisting}
 Die Ausgabe des Programms lautet: \texttt{12345}.
+\subsection*{b)}
+Folgender Assembly-Code führt den Primzahltest aus, wobei die Teilbarkeit durch die Zahlen von 2 bis 31 geprüft wird:
+\begin{lstlisting}
+; ---- DO NOT MODIFY THE DATA SECTION ----
+section .data
+
+string_choice: db "Choose a number: ", 0
+string_success: db "%d is prime.", 0xa, 0
+string_failure: db "%d is not prime.", 0xa, 0
+string_error: db "Invalid input. Exiting...", 0xa, 0
+input_number: db "%d", 0
+
+; ---- DO NOT MODIFY THE BSS SECTION ----
+section .bss
+choice: resd 1
+
+section .text
+
+global main
+;; tell NASM that printf and scanf are symbols
+;; defined in another module
+extern scanf, printf
+
+; ---- Your code goes into the TODO snippets ----
+
+main:
+    ;-------------------------------
+    ; TODO
+    ; Ask user for input of a number (use string_choice)
+    push string_choice
+    call printf
+    add esp, 4
+    ;-------------------------------
+    
+    ;-------------------------------
+    ; TODO
+    ; Read user input (use input_number)
+    push choice			; Trage übergebenenen Wert in "choice" ein
+    push input_number
+	call scanf
+	add esp, 8
+    ;-------------------------------
+    
+    ;-------------------------------
+    ; TODO
+    ; Check if user input is within valid range
+    mov eax, [choice]	; Bewege "choice" in EAX
+	cmp eax, 2			; Fehlermeldung, falls choise<2
+	jb error
+	cmp eax, 1000		; Fehlermeldung, falls choise>1000
+	ja error
+	mov esi, [choice]
+    ;-------------------------------
+    
+    ;-------------------------------
+    ; DO NOT MODIFY THIS
+    ; Call is_prime subroutine
+    mov eax, [choice]  ; Load user input
+    push eax           ; Pass user's input via the stack
+    call is_prime      ; Call subroutine
+    add esp, 4         ; Cleanup stack
+    
+    ; Check result (which is in eax)
+    cmp eax, 1
+    je success
+    
+    ; If number is not prime, print failure message
+    push esi
+    push string_failure
+    call printf
+    add esp, 8
+    ret 
+    
+    ; If number is prime, print success message
+success:
+    push esi
+    push string_success
+    call printf
+    add esp, 8
+    ret
+    ;-------------------------------
+    
+    ;-------------------------------
+    ; TODO
+    ; Print error message (use string_error)
+error:
+	push string_error
+	call printf
+	add esp, 4
+	ret
+    ;-------------------------------
+
+;-------------------------------
+; TODO
+; The function is_prime should contain your primality test.
+; Return 1 if the argument (passed via the stack) is prime, else 0.
+; Mark instructions belonging to the prologue and epilogue.
+set_eax_true:
+	mov eax, 1
+	leave
+	retn
+set_eax_false:
+	mov eax, 0
+	leave
+	retn
+is_prime:
+    ; prologue
+    push ebp
+    mov ebp, esp
+    sub esp, 4h
+    ; end of prologue
+    
+    ; function body
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 2
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 3
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 5
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 7
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 11
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 13
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 17
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 19
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 23
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 29
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	mov eax, [ebp+8]
+	xor edx, edx
+	mov ebx, 31
+	div ebx
+	cmp edx, 0
+	jz set_eax_false
+	call set_eax_true
+    ; end of function body
+    
+    ; epilogue
+    leave
+    retn
+    ; end of epilogue / end of function
+;-------------------------------
+\end{lstlisting}
 \chapter{Aufgabe 2}
 \subsection*{a)}
 Bei der Ausführung des Programmes wird der jeweils i-te Buchstabe um den Wert i-1 erhöht (siehe ASCII-Tabelle).
