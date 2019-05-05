@@ -17,16 +17,12 @@ main:
     mov ecx, 0x3d2714f5
     ; ----- YOUR CODE GOES BELOW THIS LINE -----
     ; TODO: Calculate: eax = (ecx * ecx - ebx + eax * 2) ^ (0xaaaa + ebx)
-    mov edx, eax
-    mov eax, ecx
-    mul eax
-    mov ecx, eax
-    mov eax, edx
-    add eax, eax
-    add eax, ecx
-    sub eax, ebx
-    add ebx, 0xaaaa
-    xor eax, ebx
+	imul ecx, ecx ; ecx ∗ ecx
+	sub ecx, ebx ; ecx ∗ ecx−ebx
+	shl eax, 1 ; eax ∗2
+	add eax, ecx ; ecx ∗ ecx−ebx+eax ∗2
+	add ebx, 0xaaaa ; ebx+0xaaaa
+	xor eax, ebx ; ( ecx ∗ ecx−ebx+eax ∗ 2 ) ˆ ( ebx+0xaaaa )
     ; ----- END OF YOUR MODIFICATIONS -----
  
     ; Store result
