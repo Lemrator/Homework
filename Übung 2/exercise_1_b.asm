@@ -1,4 +1,3 @@
-
 ; ---- DO NOT MODIFY THE DATA SECTION ----
 section .data
 
@@ -33,7 +32,7 @@ main:
     ;-------------------------------
     ; TODO
     ; Read user input (use input_number)
-    push choice			; Trage übergebenenen Wert in "choice" ein
+    push choice
     push input_number
 	call scanf
 	add esp, 8
@@ -42,12 +41,13 @@ main:
     ;-------------------------------
     ; TODO
     ; Check if user input is within valid range
-    mov eax, [choice]	; Bewege "choice" in EAX
-	cmp eax, 2			; Fehlermeldung, falls choise<2
-	jb error
-	cmp eax, 1000		; Fehlermeldung, falls choise>1000
-	ja error
+	mov eax, [choice]
+	cmp eax, 2
+    jb error
+    cmp eax, 1000
+    ja error
 	mov esi, [choice]
+
     ;-------------------------------
     
     ;-------------------------------
@@ -75,13 +75,13 @@ success:
     push string_success
     call printf
     add esp, 8
-    ret
+    ret 
     ;-------------------------------
     
     ;-------------------------------
     ; TODO
     ; Print error message (use string_error)
-error:
+error:  
 	push string_error
 	call printf
 	add esp, 4
@@ -112,66 +112,88 @@ is_prime:
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 2
+	cmp ebx, eax ;falls eingabe der Zahl entpricht, durch die man teilt
+	je set_eax_true ;wenn die Zahlen gleich sind, dann ist die Eingabe prim
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 3
+	cmp ebx, eax
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 5
+	cmp ebx, eax
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 7
+	cmp ebx, eax
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 11
+	cmp ebx, eax
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 13
+	cmp ebx, eax
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 17
+	cmp ebx, eax
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 19
+	cmp ebx, eax
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 23
+	cmp ebx, eax
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 29
+	cmp ebx, eax
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 31
+	cmp ebx, eax
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
