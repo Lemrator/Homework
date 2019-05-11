@@ -247,8 +247,19 @@ int verify_key(char *str){
 \chapter{Aufgabe 3}
 \subsection*{a)}
 \begin{itemize}
+		%\begin{itemize}
 		\item \textbf{Data Movement}:
-		
+			\item \texttt{mov esi, 4} $\rightarrow$ Speichert den Wert 4 im esi-Register
+			\item \texttt{push 2} $\rightarrow$ Bewegt den Wert 2 auf den Stack
+			\item \texttt{push esi} $\rightarrow$ Bewegt den Wert des esi-Registers (4) auf den Stack
+			\item \texttt{mov eax, dword ptr [esp]} $\rightarrow$ Der Wert, auf den der esp zeigt (4), wird in das eax-Register geladen $\rightarrow$ eax = 4
+			\item \texttt{lea eax, [esp + eax * 2 + 4]} $\rightarrow$ Die Adresse des esp, addiert mit dem doppelten Wert des eax und der Konstanten 4, wird in das eax-Register geladen $\rightarrow$ eax = esp+12
+			\item \texttt{sub eax, 8} $\rightarrow$ Vom eax-register wird der Wert 8 abgezogen $\rightarrow$ eax = esp+4
+			\item \texttt{mov eax, dword ptr [eax]} $\rightarrow$ In das eax wird der Wert an der Stelle [esp+4] geladen $\rightarrow$ eax = 2
+			\item \texttt{pop ebx} $\rightarrow$ Der ursprüngliche Wert des esi-Registers wird in das ebx-Register geschrieben und vom Stack entfernt $\rightarrow$ ebx = 4
+			\item \texttt{add esp, 4} $\rightarrow$ Der esp wird 4 Bytes nach oben verschoben (bezüglich des Stacks) $\rightarrow$ Der Stack wird aufgeräumt
+			\item \texttt{add eax, ebx} $\rightarrow$ eax = 2 + 4 = 6
+		%\end{itemize}
 		\item  \textbf{Arithmetic and Logic}:
 		\begin{itemize}
 			\item \texttt{xor eax, eax} $\hat{=}$ eax $\oplus$ eax = 0
@@ -259,7 +270,7 @@ int verify_key(char *str){
 			\item \texttt{shl ax, 8} $\hat{=}$ 0011010001011000\textsubscript{2} $\rightarrow$ 0011010001011000\textsubscript{2} (ax = 0, somit keine Änderung)
 			\item  \texttt{mov al, 78h} $\hat{=}$ 0011010001011000\textsubscript{2} $\rightarrow$ 0011010001110100\textsubscript{2} $\hat{=}$ 13428\textsubscript{10}
 			\item Damit ist am Ende der Wert 13428 im \texttt{eax} Register
-\end{itemize}
+		\end{itemize}
 		
 \item \textbf{Control Flow}:
 \begin{itemize}
