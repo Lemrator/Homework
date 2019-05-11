@@ -298,8 +298,8 @@ int fkt_g(int a, intb){
 }
 \end{lstlisting}
 \subsection*{b)}
-Calling Convention: Caller Cleanup\\
-Der Caller ruft erst die Subroutine auf (call $\dots$) und gibt danach in der nächsten Instruktion wieder den Platz im Stack frei (add esp, $\dots$).
+Calling Convention: cdecl\\
+Der Caller ruft erst die Subroutine auf (call $\dots$) und gibt danach in der nächsten Instruktion wieder den Platz im Stack frei (add esp, $\dots$). Außerdem werden sämtliche Paramter über den Stack übergeben.
 \begin{itemize}
 	\item 1. Paramter: \texttt{[ebp+8]}
 	\item 2. Paramter: \texttt{[ebp+0Ch]}
