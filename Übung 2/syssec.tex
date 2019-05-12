@@ -1,6 +1,7 @@
     
 \documentclass[]{scrreprt}
 \usepackage{listings}
+\usepackage{graphicx}
 \lstset{numbers=left}
 %opening
 \title{Systemsicherheit - 2. Übung}
@@ -217,16 +218,16 @@
 	Bis auf den Befehl "break verif\_key" und die dazugehörigen step- und continue-Anweisungen wurden keine weiteren Befehle benötigt.
 	\subsection*{b)}
 	\begin{lstlisting}[caption={Crackme-Code},captionpos=b]
-#include <stdio.h>
-
-int verify_key(char *str){
+	#include <stdio.h>
+	
+	int verify_key(char *str){
 	char key[5] = "HPFRV";
 	
 	for(int i=0; i<5; i++){
-		if (str[i]!=key[i]){
-			printf("Key is not valid :(\n");
-			return 0;
-		}
+	if (str[i]!=key[i]){
+	printf("Key is not valid :(\n");
+	return 0;
+	}
 	}
 	printf("Key is valid! Whoop whoop :)\n");
 	return 0;
@@ -238,27 +239,27 @@ int verify_key(char *str){
 	scanf("%s", str);
 	
 	for(int i=0; i<5; i++){
-		str[i]=str[i]+i;
+	str[i]=str[i]+i;
 	}
 	
 	return verify_key(str);
-}
-\end{lstlisting}
-\chapter{Aufgabe 3}
-\subsection*{a)}
-\begin{itemize}
+	}
+	\end{lstlisting}
+	\chapter{Aufgabe 3}
+	\subsection*{a)}
+	\begin{itemize}
 		%\begin{itemize}
 		\item \textbf{Data Movement}:
-			\item \texttt{mov esi, 4} $\rightarrow$ Speichert den Wert 4 im esi-Register
-			\item \texttt{push 2} $\rightarrow$ Bewegt den Wert 2 auf den Stack
-			\item \texttt{push esi} $\rightarrow$ Bewegt den Wert des esi-Registers (4) auf den Stack
-			\item \texttt{mov eax, dword ptr [esp]} $\rightarrow$ Der Wert, auf den der esp zeigt (4), wird in das eax-Register geladen $\rightarrow$ eax = 4
-			\item \texttt{lea eax, [esp + eax * 2 + 4]} $\rightarrow$ Die Adresse des esp, addiert mit dem doppelten Wert des eax und der Konstanten 4, wird in das eax-Register geladen $\rightarrow$ eax = esp+12
-			\item \texttt{sub eax, 8} $\rightarrow$ Vom eax-register wird der Wert 8 abgezogen $\rightarrow$ eax = esp+4
-			\item \texttt{mov eax, dword ptr [eax]} $\rightarrow$ In das eax wird der Wert an der Stelle [esp+4] geladen $\rightarrow$ eax = 2
-			\item \texttt{pop ebx} $\rightarrow$ Der ursprüngliche Wert des esi-Registers wird in das ebx-Register geschrieben und vom Stack entfernt $\rightarrow$ ebx = 4
-			\item \texttt{add esp, 4} $\rightarrow$ Der esp wird 4 Bytes nach oben verschoben (bezüglich des Stacks) $\rightarrow$ Der Stack wird aufgeräumt
-			\item \texttt{add eax, ebx} $\rightarrow$ eax = 2 + 4 = 6
+		\item \texttt{mov esi, 4} $\rightarrow$ Speichert den Wert 4 im esi-Register
+		\item \texttt{push 2} $\rightarrow$ Bewegt den Wert 2 auf den Stack
+		\item \texttt{push esi} $\rightarrow$ Bewegt den Wert des esi-Registers (4) auf den Stack
+		\item \texttt{mov eax, dword ptr [esp]} $\rightarrow$ Der Wert, auf den der esp zeigt (4), wird in das eax-Register geladen $\rightarrow$ eax = 4
+		\item \texttt{lea eax, [esp + eax * 2 + 4]} $\rightarrow$ Die Adresse des esp, addiert mit dem doppelten Wert des eax und der Konstanten 4, wird in das eax-Register geladen $\rightarrow$ eax = esp+12
+		\item \texttt{sub eax, 8} $\rightarrow$ Vom eax-register wird der Wert 8 abgezogen $\rightarrow$ eax = esp+4
+		\item \texttt{mov eax, dword ptr [eax]} $\rightarrow$ In das eax wird der Wert an der Stelle [esp+4] geladen $\rightarrow$ eax = 2
+		\item \texttt{pop ebx} $\rightarrow$ Der ursprüngliche Wert des esi-Registers wird in das ebx-Register geschrieben und vom Stack entfernt $\rightarrow$ ebx = 4
+		\item \texttt{add esp, 4} $\rightarrow$ Der esp wird 4 Bytes nach oben verschoben (bezüglich des Stacks) $\rightarrow$ Der Stack wird aufgeräumt
+		\item \texttt{add eax, ebx} $\rightarrow$ eax = 2 + 4 = 6
 		%\end{itemize}
 		\item  \textbf{Arithmetic and Logic}:
 		\begin{itemize}
@@ -272,48 +273,53 @@ int verify_key(char *str){
 			\item Damit ist am Ende der Wert 13428 im \texttt{eax} Register
 		\end{itemize}
 		
-\item \textbf{Control Flow}:
-\begin{itemize}
-\item \texttt{mov eax, 1h} $\hat{=}$ eax = 00\dots0001
-\item \texttt{neg eax} $\hat{=}$ eax = 11\dots1111
-\item \texttt{mov ebx, FFFFFFF8h}
-\item \texttt{cmp eax, ebx} 
-\item \texttt{jg true} $\rightarrow$ ebx ist größer als eax (da Vorzeichen beachtet)
-\item \texttt{mov eax, 0} wird ausgeführt
-\item damit ist im eax der Wert 0 am Ende.
-\end{itemize}
-\end{itemize}
-\subsection*{b)}
-\texttt{ja} ist ein unsigned-Vergleich, damit wird beim vergleichen das Vorzeichen nicht beachtet. In diesem Fall ist der Wert im \texttt{eax} größer und es wird \texttt{mov eax, 1} ausgeführt.
-\chapter{Aufgabe 4}
-\subsection*{a)}
-\begin{lstlisting}[caption={Funktionen f und g},captionpos=b]
-int fkt_f(int a, int b, int c){
+		\item \textbf{Control Flow}:
+		\begin{itemize}
+			\item \texttt{mov eax, 1h} $\hat{=}$ eax = 00\dots0001
+			\item \texttt{neg eax} $\hat{=}$ eax = 11\dots1111
+			\item \texttt{mov ebx, FFFFFFF8h}
+			\item \texttt{cmp eax, ebx} 
+			\item \texttt{jg true} $\rightarrow$ ebx ist größer als eax (da Vorzeichen beachtet)
+			\item \texttt{mov eax, 0} wird ausgeführt
+			\item damit ist im eax der Wert 0 am Ende.
+		\end{itemize}
+	\end{itemize}
+	\subsection*{b)}
+	\texttt{ja} ist ein unsigned-Vergleich, damit wird beim vergleichen das Vorzeichen nicht beachtet. In diesem Fall ist der Wert im \texttt{eax} größer und es wird \texttt{mov eax, 1} ausgeführt.
+	\chapter{Aufgabe 4}
+	\subsection*{a)}
+	\begin{lstlisting}[caption={Funktionen f und g},captionpos=b]
+	int fkt_f(int a, int b, int c){
 	int d = 0;
 	if(a!=0){
-		d = fkt_g(a,b);
+	d = fkt_g(a,b);
 	}
 	else{
-		d = a+b;
+	d = a+b;
 	}
 	int e = c+d;
 	return e;
-}
-int fkt_g(int a, intb){
+	}
+	int fkt_g(int a, intb){
 	int f = 0;
 	if(f<b){
-		a = a+b;
-		f = 1;
+	a = a+b;
+	f = 1;
 	}
 	return a;
-}
-\end{lstlisting}
-\subsection*{b)}
-Calling Convention: cdecl\\
-Der Caller ruft erst die Subroutine auf (call $\dots$) und gibt danach in der nächsten Instruktion wieder den Platz im Stack frei (add esp, $\dots$). Außerdem werden sämtliche Paramter über den Stack übergeben.
-\begin{itemize}
-	\item 1. Paramter: \texttt{[ebp+8]}
-	\item 2. Paramter: \texttt{[ebp+0Ch]}
-	\item 3. Paramter: \texttt{[ebp+10h]}
-\end{itemize}
+	}
+	\end{lstlisting}
+	\subsection*{b)}
+	Calling Convention: cdecl\\
+	Der Caller ruft erst die Subroutine auf (call $\dots$) und gibt danach in der nächsten Instruktion wieder den Platz im Stack frei (add esp, $\dots$). Außerdem werden sämtliche Paramter über den Stack übergeben.
+	\begin{itemize}
+		\item 1. Paramter: \texttt{[ebp+8]}
+		\item 2. Paramter: \texttt{[ebp+0Ch]}
+		\item 3. Paramter: \texttt{[ebp+10h]}
+	\end{itemize}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.2\textwidth]{figure/4b.png}
+	\caption{Zustände des Stacks}
+\end{figure}
 \end{document}
