@@ -138,66 +138,88 @@
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 2
+	cmp eax, ebx		;falls die Eingabe = dem Teiler entspricht
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 3
+	cmp eax, ebx
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 5
+	cmp eax, ebx
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 7
+	cmp eax, ebx
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 11
+	cmp eax, ebx
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 13
+	cmp eax, ebx
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 17
+	cmp eax, ebx
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 19
+	cmp eax, ebx
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 23
+	cmp eax, ebx
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 29
+	cmp eax, ebx
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
 	mov eax, [ebp+8]
 	xor edx, edx
 	mov ebx, 31
+	cmp eax, ebx
+	je set_eax_true
 	div ebx
 	cmp edx, 0
 	jz set_eax_false
