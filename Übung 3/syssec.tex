@@ -51,8 +51,9 @@ Der Kommandozeilenparamter könnte wie folgt aussehen:\newline
 \xEF\xBE\xAD\xDE
 \end{lstlisting}
 Die Instruktionen ''$\backslash$x90'' dienen hierbei als NOP-slide und als zusätzliches Padding um den Buffer zu überschreiben. Am ende muss die Adresse \texttt{0xDEADBEEF} in Little-Endian stehen. Damit wird die return-Adresse überschrieben und der Shellcode wird dadurch aufgerufen.\newline
-Wenn die Adresse des password\_buffers \texttt{0xBADE0070} lautet, dann wäre dies problematisch aufgrund des 0-Byte, da bei der \texttt{strcpy} Funktion dieses Byte als das Ende eines Strings interpretiert wird. Somit wäre es nicht möglich die return-Adresse vollständig zu überschreiben.
+Wenn die Adresse des password\_buffers \texttt{0xDEAD0070} lautet, dann wäre dies problematisch aufgrund des 0-Byte, da bei der \texttt{strcpy} Funktion dieses Byte als das Ende eines Strings interpretiert wird. Somit wäre es nicht möglich die return-Adresse vollständig zu überschreiben.
 \subsection*{d)}
 Um diesen Bug zu fixen, ist es notwendig, vor Zeile 12 des Codes das übergebene Passwort auf die Länge zu überprüfen. Die \texttt{strcpy} Funktion sollte nur dann Ausgeführt werden, wenn die Länge des eingegebenen Passwort $\leq 27$ ist.
+Auch ist es möglich, statt \texttt{strcpy}, \texttt{strncpy} zu verwenden.
 	
 \end{document}
