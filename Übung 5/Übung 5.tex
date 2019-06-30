@@ -10,14 +10,14 @@
 
 \maketitle
 \chapter{Verketten von ROP-Gadgets}
-Zunächst verschiebt das erste Gadget den ESP und verändert einen Wert auf 0, und zwar die Zelle, wo sich die $\backslash$x90 Bytes befinden. Die zweiten $\backslash$x90 Bytes werden durch \texttt{pop esi} aus dem Stack entnommen, daher darf hier keine Instruktion stehen.
+Zunächst verschiebt das erste Gadget den ESP und verändert einen Wert auf 0, und zwar die Zelle, wo sich die $\backslash$x90 Bytes befinden. Die zweiten $\backslash$x90 Bytes werden durch \texttt{pop esi} aus dem Stack entnommen, daher darf hier keine für die ROP Chain relevante Instruktion stehen.
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=01.0\textwidth]{figure/ropchain.png}
 	\caption{ROP-Chain um /bin/dash auszuführen}
 \end{figure}
 \chapter{ROP-basierter Exploit}
-Folgender Code liefer die ROP-Chain (\texttt{ropChain.py}):
+Folgender Code liefert die ROP-Chain (\texttt{ropChain.py}):
 \begin{lstlisting}[frame=single]
 rop = ''
 rop += 'A'*112
