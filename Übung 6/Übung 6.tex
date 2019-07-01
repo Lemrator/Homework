@@ -1,0 +1,29 @@
+\documentclass[]{article}
+\usepackage{listings}
+\usepackage{graphicx}
+\lstset{numbers=left}
+%opening
+\title{Systemsicherheit - 6. Übung}
+\author{Dennis Rotärmel, Niklas Entschladen, Tobias Ratajczyk, Gruppe Q}
+
+\begin{document}
+
+\maketitle
+\section{Aufgabe 1: Digitales Vergessen}
+\section{Aufgabe 2: Grundlagen von Tor}
+\subsection*{a)}
+Zwischen User und Server liegen 3 Knotenpunkte. Der User legt zuerst einen gemeinsamen Key mit dem Entry Point, dann mit dem Middle Point und anschließend mit dem Exit fest. Dadurch erhält er 3 Schlüssel. Beim Senden von Datenpaketen, werden diese so verschlüsselt, dass die einzelnen Knotenpunkte jeweils ''eine Schicht'' entschlüsseln können, sodass am Ende der Request beim richtigen Server ankommt. Die Idee ist somit eine mehrfache Verschlüsselung der selben Nachricht (''Schichten''). 
+\subsection*{b)}
+\subsection*{c)}
+Bridges sind relays die nicht öffentlich aufgelistet sind. Diese werden benutzt, um sich mit dem TOR Netzwerk zu verbinden, falls, z.B. der ISP alle Eingänge zum TOR Netzwerk blockiert. Falls dem so ist, können die Bridges dafür verwendet werden, um eine Verbindung aufzubauen.
+\section{Aufgabe 3: Traffic Analysis Attacks}
+\subsection*{a)}
+Der Angreifer beobachtet den Traffic zwischen entry-point $\leftrightarrow$ User und exit $\leftrightarrow$ Server. Da die Header noch verfügbar sind, gibt es Metadaten die lesbar sind. Falls diese sich an beiden Verbindungen sehr stark ähneln, kann ein Angreifer aufgrund von Korrelation sowohl Nutzer als auch mit dem kommunizierenden Server identifizieren.
+\subsection*{b)} 
+Gegenmaßnahmen sind:
+\begin{itemize}
+	\item Mixing: hier warten die einzelnen Knotenpunkte eine gewisse Zeit ab, bevor Pakete weiter gesendet werden.
+	\item Dummy Traffic: hierbei werden Datenpakete gesendet, die jedoch nichts mit den eigentlich gesendeten Daten zu tun haben, und den Zusammenhang zwischen mehreren Traffics zerstören.
+\end{itemize}
+Probleme bei diesen sind die auftretenden hohen Latenzen, die durch das Warten erzeugt wird, oder die Bandbreite wird aufgrund von exzessiven Dummy Traffic ausgeschöpft, was zu Datenverlust und/oder einer sehr hohen Latenz führt.
+\end{document}
